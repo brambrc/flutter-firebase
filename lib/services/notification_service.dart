@@ -1,13 +1,13 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NotificationService {
   static final FirebaseMessaging _messaging = FirebaseMessaging.instance;
-  static final FlutterLocalNotificationsPlugin _localNotifications =
-      FlutterLocalNotificationsPlugin();
+  // static final FlutterLocalNotificationsPlugin _localNotifications =
+  //     FlutterLocalNotificationsPlugin();
 
   static bool _isInitialized = false;
 
@@ -20,7 +20,7 @@ class NotificationService {
       await _requestPermission();
       
       // Initialize local notifications
-      await _initializeLocalNotifications();
+      // await _initializeLocalNotifications();
       
       // Configure FCM
       await _configureFCM();
@@ -51,6 +51,7 @@ class NotificationService {
   }
 
   // Initialize local notifications
+  /*
   static Future<void> _initializeLocalNotifications() async {
     const androidInitializationSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
     
@@ -70,6 +71,7 @@ class NotificationService {
       onDidReceiveNotificationResponse: _onNotificationTap,
     );
   }
+  */
 
   // Configure FCM message handlers
   static Future<void> _configureFCM() async {
@@ -91,7 +93,8 @@ class NotificationService {
     print('Received foreground message: ${message.messageId}');
     
     // Show local notification when app is in foreground
-    await _showLocalNotification(message);
+      // await _showLocalNotification(message);
+      print('Foreground message: ${message.notification?.title} - ${message.notification?.body}');
   }
 
   // Handle background messages (when app is opened via notification)
@@ -103,6 +106,7 @@ class NotificationService {
   }
 
   // Handle notification tap
+  /*
   static void _onNotificationTap(NotificationResponse response) {
     print('Notification tapped: ${response.payload}');
     
@@ -112,8 +116,10 @@ class NotificationService {
       _handleNotificationAction({'action': response.payload!});
     }
   }
+  */
 
   // Show local notification
+  /*
   static Future<void> _showLocalNotification(RemoteMessage message) async {
     const androidNotificationDetails = AndroidNotificationDetails(
       'firebase_learning_channel',
@@ -139,6 +145,7 @@ class NotificationService {
       payload: message.data['action'] ?? 'default',
     );
   }
+  */
 
   // Handle notification actions
   static void _handleNotificationAction(Map<String, dynamic> data) {
@@ -216,61 +223,65 @@ class NotificationService {
 
   // Send test notification (for demo purposes)
   static Future<void> sendTestNotification() async {
-    await _showLocalNotification(
-      RemoteMessage(
-        notification: const RemoteNotification(
-          title: 'Test Notification',
-          body: 'This is a test notification from Firebase Learning App',
-        ),
-        data: {'action': 'test'},
-      ),
-    );
+    print('Test Notification: This is a test notification from Firebase Learning App');
+    // await _showLocalNotification(
+    //   RemoteMessage(
+    //     notification: const RemoteNotification(
+    //       title: 'Test Notification',
+    //       body: 'This is a test notification from Firebase Learning App',
+    //     ),
+    //     data: {'action': 'test'},
+    //   ),
+    // );
   }
 
   // Show welcome notification for new users
   static Future<void> showWelcomeNotification(String userName) async {
-    await _showLocalNotification(
-      RemoteMessage(
-        notification: RemoteNotification(
-          title: 'Selamat Datang, $userName!',
-          body: 'Terima kasih telah bergabung dengan Firebase Learning App',
-        ),
-        data: {'action': 'welcome'},
-      ),
-    );
+    print('Welcome Notification: Selamat Datang, $userName!');
+    // await _showLocalNotification(
+    //   RemoteMessage(
+    //     notification: RemoteNotification(
+    //       title: 'Selamat Datang, $userName!',
+    //       body: 'Terima kasih telah bergabung dengan Firebase Learning App',
+    //     ),
+    //     data: {'action': 'welcome'},
+    //   ),
+    // );
   }
 
   // Show todo completion notification
   static Future<void> showTodoCompletedNotification(String todoTitle) async {
-    await _showLocalNotification(
-      RemoteMessage(
-        notification: RemoteNotification(
-          title: 'Todo Selesai! 🎉',
-          body: 'Anda telah menyelesaikan: $todoTitle',
-        ),
-        data: {'action': 'todo_completed'},
-      ),
-    );
+    print('Todo Completion Notification: Todo Selesai! 🎉 - $todoTitle');
+    // await _showLocalNotification(
+    //   RemoteMessage(
+    //     notification: RemoteNotification(
+    //       title: 'Todo Selesai! 🎉',
+    //       body: 'Anda telah menyelesaikan: $todoTitle',
+    //     ),
+    //     data: {'action': 'todo_completed'},
+    //   ),
+    // );
   }
 
   // Show daily reminder notification
   static Future<void> showDailyReminderNotification() async {
-    await _showLocalNotification(
-      RemoteMessage(
-        notification: const RemoteNotification(
-          title: 'Jangan Lupa! ⏰',
-          body: 'Periksa daftar tugas Anda hari ini',
-        ),
-        data: {'action': 'daily_reminder'},
-      ),
-    );
+    print('Daily Reminder Notification: Jangan Lupa! ⏰ - Periksa daftar tugas Anda hari ini');
+    // await _showLocalNotification(
+    //   RemoteMessage(
+    //     notification: const RemoteNotification(
+    //       title: 'Jangan Lupa! ⏰',
+    //       body: 'Periksa daftar tugas Anda hari ini',
+    //     ),
+    //     data: {'action': 'daily_reminder'},
+    //   ),
+    // );
   }
 
   // Clear all notifications
   static Future<void> clearAllNotifications() async {
     try {
-      await _localNotifications.cancelAll();
-      print('All notifications cleared');
+      // await _localNotifications.cancelAll();
+      print('All notifications cleared (disabled local notifications)');
     } catch (e) {
       print('Error clearing notifications: $e');
     }

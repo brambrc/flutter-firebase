@@ -2,6 +2,7 @@
 <resources>
     <!-- Primary app colors -->
     <color name="primary_color">#FF6B35</color>
+    <color name="colorPrimary">#FF6B35</color>
     <color name="primary_dark">#E85A2B</color>
     <color name="accent_color">#4ECDC4</color>
     
@@ -30,4 +31,7 @@
     <color name="success_color">#4CAF50</color>
     <color name="error_color">#F44336</color>
     <color name="warning_color">#FF9800</color>
+    
+    <!-- Launch screen background color -->
+    <color name="launch_background_color">#FF6B35</color>
 </resources>

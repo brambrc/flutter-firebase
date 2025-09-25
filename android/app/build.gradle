@@ -24,8 +24,8 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.firebase_learning_app"
-    compileSdk 34
+    namespace "com.flutter.dev"
+    compileSdk 35
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -42,9 +42,9 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.firebase_learning_app"
+        applicationId "com.flutter.dev"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
